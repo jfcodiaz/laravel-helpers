@@ -1,6 +1,6 @@
 <?php
 
-    namespace DevTics\EasyRestCtrl\traits;
+    namespace DevTics\LaravelHelpers\Model\traits;
 
     trait MethodsModelBase {
         public static function getAllForDataTables() {
