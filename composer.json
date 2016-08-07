@@ -14,7 +14,7 @@
         "classmap": [],
         "files": [],
         "psr-4": {
-            "DevTics\\EasyRestCtrl\\": "src/"
+            "DevTics\\LaravelHelpers\\": "src/"
         }
     }
 }
