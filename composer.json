@@ -1,0 +1,20 @@
+{
+    "name": "dvtics/laravel-helpers",
+    "description": "Base con la programación generica para un crear un controlador de laravel con la funcionalidad basica de un servicio rest",
+    "type": "libary",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JFco Díaz",
+            "email": "jfcodiaz@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "classmap": [],
+        "files": [],
+        "psr-4": {
+            "DevTics\\EasyRestCtrl\\": "src/"
+        }
+    }
+}
