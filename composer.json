@@ -1,6 +1,6 @@
 {
     "name": "devtics/laravel-helpers",
-    "description": "Base con la programación generica para un crear un controlador de laravel con la funcionalidad basica de un servicio rest",
+    "description": "Clases con funcionalidad para facilitar las operaciones básicas de CRUD, Servicios Rest etc",
     "type": "libary",
     "license": "MIT",
     "authors": [
