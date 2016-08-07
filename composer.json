@@ -1,5 +1,5 @@
 {
-    "name": "dvtics/laravel-helpers",
+    "name": "devtics/laravel-helpers",
     "description": "Base con la programación generica para un crear un controlador de laravel con la funcionalidad basica de un servicio rest",
     "type": "libary",
     "license": "MIT",
