@@ -85,7 +85,9 @@ class ApiRestController extends BaseController {
     {
        throw new Exception("Formulario no implementado");
     }
-
+    public function getInputs(){
+        return Input::all();
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -99,7 +101,7 @@ class ApiRestController extends BaseController {
         if($obj === null) {
             abort(404);
         }
-        $obj->fill(Input::all());
+        $obj->fill($this->getInputs());
         $obj->save();
         return ['succes' => true, 'model'=> $obj];
     }
@@ -115,5 +117,9 @@ class ApiRestController extends BaseController {
         $refMethod->invoke(null, [$id]);
         $nDestroy = \siosp\models\Perfil::destroy($id);        
         return ['succes' => true, 'removeIntes'=> $nDestroy];
+    }
+    public function getAllForDataTables() {
+        $refMeth= new \ReflectionMethod(static::$model, 'getAllForDataTables');
+        return $refMeth->invokeArgs(null, []);
     }
 }
