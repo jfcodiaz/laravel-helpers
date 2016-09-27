@@ -114,8 +114,7 @@ class ApiRestController extends BaseController {
      */
     public function destroy($id){
         $refMethod = new \ReflectionMethod(static::$model, 'destroy');
-        $refMethod->invoke(null, [$id]);
-        $nDestroy = \siosp\models\Perfil::destroy($id);        
+        $nDestroy = $refMethod->invoke(null, [$id]);                
         return ['succes' => true, 'removeIntes'=> $nDestroy];
     }
     public function getAllForDataTables() {
