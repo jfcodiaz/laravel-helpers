@@ -49,7 +49,7 @@ class ApiRestController extends BaseController {
         $obj = $refClass->newInstance();
         $obj->fill(Input::all());
         $obj->save();
-        return ['succes' => true, 'model'=> $obj];
+        return ['success' => true, 'model'=> $obj];
     }
 
     public function relation ($id, $relation) {        
@@ -103,7 +103,7 @@ class ApiRestController extends BaseController {
         }
         $obj->fill($this->getInputs());
         $obj->save();
-        return ['succes' => true, 'model'=> $obj];
+        return ['success' => true, 'model'=> $obj];
     }
 
     /**
@@ -115,7 +115,7 @@ class ApiRestController extends BaseController {
     public function destroy($id){
         $refMethod = new \ReflectionMethod(static::$model, 'destroy');
         $nDestroy = $refMethod->invoke(null, [$id]);                
-        return ['succes' => true, 'removeIntes'=> $nDestroy];
+        return ['success' => true, 'removeIntes'=> $nDestroy];
     }
     public function getAllForDataTables() {
         $refMeth= new \ReflectionMethod(static::$model, 'getAllForDataTables');
