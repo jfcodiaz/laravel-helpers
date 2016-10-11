@@ -35,7 +35,16 @@
             }
             return null;
         }
-
+        
+        public static function getByids($ids, $returnQuery = false) {
+            $arrIds = (array)$ids;
+            $query = static::whereIn('id', $arrIds);
+            if($returnQuery){
+                return $returnQuery;
+            }
+            return $query->get();
+        }
+        
         public static function relation($id, $relation) {            
             return static::where('id', $id)->with($relation)->get()->get(0)->getRelation($relation);
         }
