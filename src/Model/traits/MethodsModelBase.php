@@ -36,10 +36,10 @@
             return null;
         }
         
-        public static function getByids($ids, $returnQuery = false) {
+        public static function getByIds($ids, $returnQuery = false) {
             $arrIds = (array)$ids;
             $query = static::whereIn('id', $arrIds);
-            if($returnQuery){
+            if($returnQuery) {
                 return $returnQuery;
             }
             return $query->get();
