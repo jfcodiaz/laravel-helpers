@@ -3,6 +3,9 @@
     namespace DevTics\LaravelHelpers\Model\traits;
 
     trait MethodsModelBase {
+        public function datetimeFormat($attr){
+            return Carbon::createFromFormat($this->dateFormat, $this->attributes[$attr])->toW3cString();
+        }
         public static function getAllForDataTables() {
             return static::getAll();
         }
