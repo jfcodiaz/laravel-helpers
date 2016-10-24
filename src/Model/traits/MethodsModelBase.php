@@ -1,7 +1,8 @@
 <?php
 
     namespace DevTics\LaravelHelpers\Model\traits;
-
+    use Carbon\Carbon;
+    
     trait MethodsModelBase {
         public function datetimeFormat($attr){
             return Carbon::createFromFormat($this->dateFormat, $this->attributes[$attr])->toW3cString();
