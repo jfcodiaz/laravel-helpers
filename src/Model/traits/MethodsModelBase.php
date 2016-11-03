@@ -4,6 +4,14 @@
     use Carbon\Carbon;
     
     trait MethodsModelBase {
+        public function strDateToUTCDateTime($dateString) {
+            if(is_string($dateString)) {
+                $date = new \DateTime($dateString);
+                $date->setTimezone(new \DateTimeZone("UTC"));
+                return $date;
+            }
+            return $dateString;
+        }
         public function datetimeFormat($attr){
             return Carbon::createFromFormat($this->dateFormat, $this->attributes[$attr])->toW3cString();
         }
