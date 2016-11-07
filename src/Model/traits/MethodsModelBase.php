@@ -58,7 +58,15 @@
         }
         
         public static function relation($id, $relation) {            
-            return static::where('id', $id)->with($relation)->get()->get(0)->getRelation($relation);
+            $whit = \Illuminate\Support\Facades\Input::get("with");
+            $query = static::where('id', $id)->with($relation);
+            if($whit){
+                $relations = explode(",", $whit);
+                foreach ($relations as $fnWith){
+                    $query->with($fnWith);
+                }
+            }
+            return $query->get()->get(0)->getRelation($relation);
         }
 
         public static function getRandom($limit = false) {
