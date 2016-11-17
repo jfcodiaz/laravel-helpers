@@ -40,8 +40,15 @@
         }
 
         public static function getById($id) {
-            $obj = static::where("id", $id);
-            $res = $obj->get();
+            $query = static::where("id", $id);
+            $whit = \Illuminate\Support\Facades\Input::get("with");
+            if($whit){
+                $relations = explode(",", $whit);
+                foreach ($relations as $fnWith){
+                    $query->with($fnWith);
+                }
+            }
+            $res = $query->get();
             if ($res->count()) {
                 return $res->get(0);
             }
