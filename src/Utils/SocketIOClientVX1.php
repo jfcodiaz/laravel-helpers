@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace DevTics\Libs\Helpers;
+namespace  DevTics\LaravelHelpers\Utils;
 
 use ElephantIO\Client;
 use ElephantIO\Engine\SocketIO\Version1X;
@@ -23,16 +23,15 @@ class SocketIOClientVX1 {
     }
     
     public function emmit($event, $data, $close=true){
-        $r = $client->emit($event, $data);
-        if($close) {
-            $client->close();
+        $r = $this->elephanIo->emit($event, $data);
+        if($close) { 
+             $this->elephanIo->close();
         }
         return $r;
     }
     
     public static function staticEmmit($event, $data, $returnClient=false, $url = false) {
-        die("---");
-        $obj = new DevTics\Libs\Helpers\SocketIOClientVX1($url);
+        $obj = new SocketIOClientVX1($url);
         $r = $obj->emmit($event, $data, !$returnClient);
         if($returnClient){
             return $obj;
@@ -44,7 +43,7 @@ class SocketIOClientVX1 {
         if(!$url) {
             $url = env("SOCKETIO_SERVER");   
         }
-        $cient = new Client(new Version1X($url));
+        $client = new Client(new Version1X($url));
         $client->initialize();
         return $client;
         
