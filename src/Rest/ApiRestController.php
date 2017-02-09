@@ -133,8 +133,6 @@ class ApiRestController extends BaseController {
             if(is_bool($res)) {
                 return ['success' => $res];
             }
-            
-            
         } catch (\Exception $ex) {
             return self::responseJSONErrorFromEx($ex,400);
         }
