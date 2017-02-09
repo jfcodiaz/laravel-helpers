@@ -121,19 +121,37 @@ class ApiRestController extends BaseController {
         $refMeth= new \ReflectionMethod(static::$model, 'getAllForDataTables');
         return $refMeth->invokeArgs(null, []);
     }
-    
-     public function responseJSONErrorFromEx($ex) {
-        return $this->responseJSONError($ex->getMessage(), $ex->getCode());
+    protected function tryDo($callback){
+        try{
+            $res =  $callback();            
+            if(is_array($res)) {
+                return array_merge(['success'=>true], $res);
+            }
+            if(is_null($res)) {
+                return ['success' => true];
+            }
+            if(is_bool($res)) {
+                return ['success' => $res];
+            }
+            
+            
+        } catch (\Exception $ex) {
+            return self::responseJSONErrorFromEx($ex,400);
+        }
+    }
+    public function responseJSONErrorFromEx($ex, $httpCode = 400) {
+        return $this->responseJSONError($ex->getMessage(), $ex->getCode(), $httpCode);
     }
     
-    public function responseJSONError($msj, $noError = 400) {
+    public function responseJSONError($msj, $noError, $httpCodeError = 400) {
         $response = \Response::json([
             'success' => false,
             'error'   => true,
-            'message' => $msj
+            'message' => $msj,
+            'no_error' => $noError
         ]);
-        if($noError) {
-            $response->setStatusCode($noError, $msj);
+        if($httpCodeError) {
+            $response->setStatusCode($httpCodeError, $msj);
         }
         return $response;
     }
