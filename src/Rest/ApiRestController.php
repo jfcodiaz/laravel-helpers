@@ -121,7 +121,7 @@ class ApiRestController extends BaseController {
         $refMeth= new \ReflectionMethod(static::$model, 'getAllForDataTables');
         return $refMeth->invokeArgs(null, []);
     }
-    protected function tryDo($callback){
+    protected function tryDo($callback, $httpError=400){
         try{
             $res =  $callback();            
             if(is_array($res)) {
@@ -133,8 +133,10 @@ class ApiRestController extends BaseController {
             if(is_bool($res)) {
                 return ['success' => $res];
             }
+            
+            
         } catch (\Exception $ex) {
-            return self::responseJSONErrorFromEx($ex,400);
+            return self::responseJSONErrorFromEx($ex, $httpError);
         }
     }
     public function responseJSONErrorFromEx($ex, $httpCode = 400) {

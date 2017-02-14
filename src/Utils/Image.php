@@ -1,5 +1,5 @@
 <?php
-namespace DwSetpoint\Libs\Helpers;
+namespace  DevTics\LaravelHelpers\Utils;
 /**
  * Description of ImageHelper
  *
