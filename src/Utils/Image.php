@@ -1,11 +1,12 @@
 <?php
 namespace  DevTics\LaravelHelpers\Utils;
+use Illuminate\Support\Facades\File;
 /**
  * Description of ImageHelper
  *
  * @author jdiaz
  */
-class ImageHelper {
+class Image {
     
     public static function toFit ($source, $width, $height, $format = "png", $colorFill = "#000",  $opacityFill = 0, $getImagineImage = false) {
         $imagine = new \Imagine\Gd\Imagine();
