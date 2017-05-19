@@ -44,13 +44,16 @@ class ApiRestController extends BaseController {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {       
-        $refClass = new \ReflectionClass(static::$model);
-        /* @var $obj ModelBase */
-        $obj = $refClass->newInstance();
-        $obj->fill($this->fixCreateInputs());
-        $obj->save();
-        return ['success' => true, 'model'=> $obj];
+        return $this->tryDo(function() use ($request){
+            $refClass = new \ReflectionClass(static::$model);
+            /* @var $obj ModelBase */
+            $obj = $refClass->newInstance();
+            $obj->fill($this->fixCreateInputs());
+            $obj->save();
+            return ['success' => true, 'model'=> $obj, 'message' => $obj->successMsjStore()];
+        });
     }
+
 
     public function relation ($id, $relation) {        
         $refMetehod = new \ReflectionMethod(static::$model, 'relation');

@@ -4,6 +4,9 @@
     use Carbon\Carbon;
     
     trait MethodsModelBase {
+        public function successMsjStore() {
+            return "Success Store";
+        }
         public function strDateToUTCDateTime($dateString) {
             if(is_string($dateString)) {
                 $date = new \DateTime($dateString);
