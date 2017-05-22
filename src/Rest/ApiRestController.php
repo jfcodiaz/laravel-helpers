@@ -102,16 +102,16 @@ class ApiRestController extends BaseController {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        return $this->tryDo(function() use ($request, $id) {
-             $refMethod = new \ReflectionMethod(static::$model, 'getById');
-             $obj  = $refMethod->invokeArgs(null, [$id]);                
-             if($obj === null) {
+         return $this->tryDo(function() use ($request, $id) {
+            $refMethod = new \ReflectionMethod(static::$model, 'getById');
+            $obj  = $refMethod->invokeArgs(null, [$id]);                
+            if($obj === null) {
                 abort(404);
-             }
-             $obj->fill($this->fixUpdateInputs());
-             $obj->save();
-             return ['success' => true, 'model'=> $obj];
-        }        
+            }
+            $obj->fill($this->fixUpdateInputs());
+            $obj->save();
+            return ['success' => true, 'model'=> $obj];
+        });
     }
 
     /**
