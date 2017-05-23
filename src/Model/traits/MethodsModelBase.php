@@ -7,6 +7,17 @@
         public function successMsjStore() {
             return "Success Store";
         }
+        public static function arrCreate($param) {
+            $fields = $param[0];
+            $data = $param[1];
+            foreach ($data as $d){
+                $arr = [];
+                foreach($fields as $i => $f ){
+                    $arr[$f] =  $d[$i];
+                }
+                self::create($arr);
+            }
+        }
         public function strDateToUTCDateTime($dateString) {
             if(is_string($dateString)) {
                 $date = new \DateTime($dateString);
