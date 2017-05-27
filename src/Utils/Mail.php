@@ -66,7 +66,7 @@ class Mail {
             );
         }
         
-        if($test) {
+        if($test || env('EMAIL_TEST')) {
             $args['message'] = new HelperMail;
             if($format === 'html') {
                 $bodyHTMLTest =  view($htmlView, $args);
